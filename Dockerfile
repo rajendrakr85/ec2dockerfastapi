@@ -2,7 +2,7 @@
 FROM public.ecr.aws/lambda/python:3.9
 
 # Copy application code
-COPY app.py ./
+COPY main.py ./
 COPY requirements.txt ./
 
 EXPOSE 8000
