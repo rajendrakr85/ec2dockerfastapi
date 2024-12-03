@@ -3,6 +3,6 @@ services:
   app:
     image: fastapi-app
     ports:
-      - "8000-8020:8000"
+      - "8000-8003:8000"
     deploy:
-      replicas: 21
+      replicas: 3
