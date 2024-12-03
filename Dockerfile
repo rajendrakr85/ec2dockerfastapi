@@ -1,13 +1,20 @@
-# Base image for AWS Lambda Python runtime
-FROM public.ecr.aws/lambda/python:3.9
+# Base image with Python 3.9
+FROM python:3.9-slim
 
-# Copy application code
-COPY main.py ./
-COPY requirements.txt ./
+# Set the working directory
+WORKDIR /app
 
-EXPOSE 8000
+# Copy dependencies file
+COPY requirements.txt .
+
 # Install dependencies
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Command for AWS Lambda to invoke the handler
+# Copy the application code
+COPY ./app /app
+
+# Expose the application port
+EXPOSE 8000
+
+# Command to run the FastAPI application
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
